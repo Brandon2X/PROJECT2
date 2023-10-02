@@ -10,9 +10,43 @@ const winningCombos = [
     [0, 4, 8],
     [2, 4, 6]
     ];
+
 /*----- app's state (variables) -----*/
+
 let board;
 let turn = 'X';
+let win;
+
+/*----- cached element references -----*/
+
+const squares = Array.from(document.querySelectorAll('#board div'));
+
+/*----- event listeners -----*/
+document.getElementById('board').addEventListener('click', handleTurn);
+const messages = document.querySelector('h2');
+document.getElementById('reset-button').addEventListener('click', init);
+
+
+/*----- functions -----*/
+
+function getWinner() {
+    let winner = null;
+    winningCombos.forEach(function(combo, index) {
+        if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
+        });
+        return winner ? winner : board.includes('') ? null : 'T';
+};
+
+function handleTurn() {
+    let idx = squares.findIndex(function(square) {
+        return square === event.target;
+    });
+    board[idx] = turn;
+    turn = turn === 'X' ? 'O' : 'X';
+    win = getWinner();
+    render();
+};
+
 function init() {
     board = [
     '', '', '',
@@ -20,34 +54,23 @@ function init() {
     '', '', ''
     ];
     render();
-    };
-    init();
-    function render() {
-        board.forEach(function(mark, index){
-            console.log(mark, index);
-            });
-     
-    };
-// new code below
-let win;
+};
 
-/*----- cached element references -----*/
-const squares = Array.from(document.querySelectorAll('#board div'));
 function render() {
     board.forEach(function(mark, index) {
-        squares[index].textContent = mark;
+    //this moves the value of the board item into the squares[idx]
+    squares[index].textContent = mark;
     });
+    messages.textContent = win === 'T' ? `That's a tie man no fair!` : win ? `${win} wins the game loserrrr!` : `It's ${turn}'s turn!`;
     };
-/*----- event listeners -----*/
-document.getElementById('board').addEventListener('click', handleTurn);
-// new code below
-const messages = document.querySelector('h2');
-/*----- functions -----*/
-function handleTurn(event) {
-    let idx = squares.findIndex(function(square) {
-    return square === event.target;
-    });
 
-    board[idk] = turn;
-    console.log(board);
-}
+init();
+
+
+
+
+
+
+
+
+
