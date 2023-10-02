@@ -61,7 +61,7 @@ function render() {
     //this moves the value of the board item into the squares[idx]
     squares[index].textContent = mark;
     });
-    messages.textContent = win === 'T' ? `That's a tie man no fair!` : win ? `${win} wins the game loserrrr!` : `It's ${turn}'s turn!`;
+    messages.textContent = win === 'T' ? `That's a tie man no fair man!` : win ? `${win} wins the game loserrrr!` : `It's ${turn}'s turn!`;
     };
 
 init();
