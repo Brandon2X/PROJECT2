@@ -43,15 +43,15 @@ body {
     #reset-button {
     text-align: center;
     font-size: 20px;
-    border: 1px solid black;
+    border: 1px solid white;
     height: 55px;
     width: 100px;
     margin: 10px;
-    background-color:pink
+    background-color:gold
     }
 
     body{
-        background-color:aqua
+        background-color:aqua;
    }
 
     p {
